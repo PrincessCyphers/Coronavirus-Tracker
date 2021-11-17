@@ -21,12 +21,12 @@ public class AreaStats {
         this.country = country;
     }
 
-    public int getLatestNUmberOfCases() {
+    public int getLatestNumberOfCases() {
         return latestNumberOfCases;
     }
 
-    public void setLatestNUmberOfCases(int latestNUmberOfCases) {
-        this.latestNumberOfCases = latestNUmberOfCases;
+    public void setLatestNumberOfCases(int latestNumberOfCases) {
+        this.latestNumberOfCases = latestNumberOfCases;
     }
 
     @Override

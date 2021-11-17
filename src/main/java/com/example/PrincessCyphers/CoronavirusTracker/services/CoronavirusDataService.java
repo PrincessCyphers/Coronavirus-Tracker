@@ -27,10 +27,14 @@ public class CoronavirusDataService {
 
     private List<AreaStats> allStats = new ArrayList<>();           // array of area stats. to drop previous stats and recon with new data.
 
+    public List<AreaStats> getAllStats() {
+        return allStats;
+    }
+
     @PostConstruct
 
     // to create schedule that allow prog to run on set timing, sec, min, day, month, year. setting to check at 6am every day
-    @Scheduled(cron = "* * 6  * *")
+    @Scheduled(cron = "* * 6 * * *")
     public void fetchViralData() throws IOException, InterruptedException {
         List<AreaStats> newStats = new ArrayList<>();           // allows high user worklaod with no error responses whilst constructing new list-, creates instances of newStats and populates allStats above,
         HttpClient client = HttpClient.newHttpClient();
@@ -45,7 +49,7 @@ public class CoronavirusDataService {
             AreaStats areaStat = new AreaStats();
             areaStat.setState(record.get("Province/State"));
             areaStat.setCountry(record.get("Country/Region"));
-            areaStat.setLatestNUmberOfCases(Integer.parseInt(record.get(record.size()-1)));         //to access the latest column w/ latest data
+            areaStat.setLatestNumberOfCases(Integer.parseInt(record.get(record.size()-1)));         //to access the latest column w/ latest data
             System.out.println(areaStat);
             newStats.add(areaStat);
 

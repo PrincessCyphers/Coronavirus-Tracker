@@ -1,1 +1,29 @@
-<h1>COVID-19 Daily Tracker</h1>
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>COVID-19 Daily Tracker Application</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+
+<p th:text="Table"></p>
+
+<table>
+    <tr>
+        <th>State</th>
+        <th>Country</th>
+        <th>Latest Number of Cases</th>
+    </tr>
+    <tr th:each="areaStat : ${areaStats}">
+        <td th:text="${areaStat.state}"></td>
+        <td th:text="${areaStat.country}"></td>
+        <td th:text="${areaStat.latestNumberOfCases}"></td>
+    </tr>
+</table>
+
+</body>
+
+</html>

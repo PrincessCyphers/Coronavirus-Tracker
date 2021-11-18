@@ -47,10 +47,12 @@ public class CoronavirusDataService {
         Iterable<CSVRecord> records = CSVFormat.DEFAULT.withFirstRecordAsHeader().parse(csvBodyReader);
         for (CSVRecord record : records) {
             AreaStats areaStat = new AreaStats();
-            areaStat.setState(record.get("Province/State"));
             areaStat.setCountry(record.get("Country/Region"));
-            areaStat.setLatestNumberOfCases(Integer.parseInt(record.get(record.size()-1)));         //to access the latest column w/ latest data
-            System.out.println(areaStat);
+            areaStat.setState(record.get("Province/State"));
+            int latestCases = Integer.parseInt(record.get(record.size()-1));         //to access the latest column w/ latest data
+            int prevDayCases = Integer.parseInt(record.get(record.size()-2));
+            areaStat.setLatestNumberOfCases(latestCases);
+            areaStat.setDiffFromPrevDay(latestCases - prevDayCases);
             newStats.add(areaStat);
 
         }
